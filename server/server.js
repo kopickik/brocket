@@ -26,10 +26,11 @@ require('./routers/index')(app);
 // Add your code here
 
 app.get('/:username', cors(), (req, res) => {
-  getUsername(req.params.username, { gh})
-    .then(username => res.end(username));
+  console.log("Accessing.")
+  getUsername(req.params.username, { gh })
+    .then(username => res.send(username))
+    .catch(err => res.end(err));
 });
-
 
 const port = process.env.PORT || localConfig.port;
 app.listen(port, function(){
